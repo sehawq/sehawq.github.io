@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How to Build a Simple REST API with Node.js and MongoDB</title>
+  <meta name="description" content="Step-by-step guide to creating a REST API using Node.js, Express, and MongoDB">
+  <style>
+    :root{
+      --accent:#2FA6FF;
+      --bg:#0B0B0D;
+      --card:#171719;
+      --text:#E9EEF2;
+      --muted:#BFC9D3;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(2,6,23,0.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      line-height:1.65;
+      opacity:0;
+      transform:translateY(16px);
+      filter:saturate(0.9);
+      transition:
+        opacity 800ms ease,
+        transform 800ms ease,
+        filter 800ms ease;
+    }
+    body.page-loaded{
+      opacity:1;
+      transform:translateY(0);
+      filter:saturate(1);
+    }
+    .container{
+      max-width:920px;
+      margin:40px auto 72px;
+      padding:0 20px;
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:.5rem;
+      color:var(--accent); text-decoration:none; font-weight:600;
+      padding:.4rem .2rem; border-radius:8px;
+      transition:color .2s ease, transform .2s ease, background .2s ease;
+      background:transparent;
+    }
+    .back:hover{ color:#6EC3FF; transform:translateX(-2px); background:rgba(47,166,255,0.06); }
+    article{
+      background:var(--card);
+      border:1px solid rgba(47,166,255,0.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:32px;
+      position:relative;
+      overflow:hidden;
+    }
+    article::after{
+      content:"";
+      position:absolute; inset:auto 0 0 0; height:2px;
+      background:linear-gradient(90deg, transparent, rgba(47,166,255,.5), transparent);
+      opacity:.6;
+    }
+    h1{
+      margin:0 0 .25rem 0;
+      font-size:clamp(28px, 3.2vw, 38px);
+      letter-spacing:.2px;
+      color:#EAF6FF;
+      text-shadow:0 1px 0 rgba(0,0,0,.25);
+    }
+    .meta{ color:var(--muted); font-size:.92rem; margin-bottom:1.4rem; }
+    h2{
+      margin-top:1.6rem;
+      color:var(--accent);
+      font-size:clamp(20px,2.2vw,24px);
+      padding-bottom:.35rem;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    p{ margin:.75rem 0 1rem; }
+    ul{ margin:.2rem 0 1rem 1.2rem; }
+    li{ margin:.35rem 0; }
+    pre{
+      background:#0F1115;
+      border:1px solid rgba(47,166,255,0.12);
+      color:#BFEFFF;
+      padding:1rem 1.1rem;
+      border-radius:10px;
+      overflow:auto;
+      font-size:.93rem;
+      line-height:1.55;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+      position:relative;
+      transition:box-shadow .2s ease, transform .2s ease;
+    }
+    pre:hover{ box-shadow:0 10px 30px rgba(2,6,23,0.35); transform:translateY(-1px); }
+    code{ font-family:Consolas,Menlo,Monaco,monospace; }
+    .copy-badge{
+      position:absolute; top:8px; right:8px;
+      font-size:.8rem; color:#cfeaff; background:rgba(47,166,255,0.12);
+      padding:.25rem .5rem; border-radius:8px; border:1px solid rgba(47,166,255,0.18);
+      opacity:.85; user-select:none;
+    }
+    .reveal{ opacity:0; transform:translateY(14px); }
+    body.page-loaded .reveal{
+      animation:reveal .7s ease forwards;
+    }
+    @keyframes reveal{
+      to{ opacity:1; transform:translateY(0); }
+    }
+    .d1{ animation-delay:.05s; }
+    .d2{ animation-delay:.15s; }
+    .d3{ animation-delay:.25s; }
+    .d4{ animation-delay:.35s; }
+    .d5{ animation-delay:.45s; }
+    .d6{ animation-delay:.55s; }
+    .d7{ animation-delay:.65s; }
+    .d8{ animation-delay:.75s; }
+    @media (prefers-reduced-motion: reduce){
+      body{ transition:none !important; transform:none !important; opacity:1 !important; }
+      .reveal{ opacity:1 !important; transform:none !important; animation:none !important; }
+    }
+    @media (max-width:560px){
+      article{ padding:22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back reveal d1" href="../../index.html" aria-label="Back to Blog">← Return to the home page</a>
+
+    <article class="reveal d2">
+      <h1 class="reveal d2">How to Build a Simple REST API with Node.js and MongoDB</h1>
+      <p class="meta reveal d3">September 20, 2025 • ~7 min read</p>
+
+      <p class="reveal d3">In this guide, you'll learn how to build a basic REST API using <strong>Node.js</strong>, <strong>Express</strong>, and <strong>MongoDB</strong>. We'll cover project setup, connecting to MongoDB, creating a data model, and implementing CRUD operations step by step.</p>
+
+      <h2 class="reveal d4">1. Prerequisites</h2>
+      <ul class="reveal d4">
+        <li>Install <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js</a> (LTS version recommended)</li>
+        <li>Have <a href="https://www.mongodb.com/atlas/database" target="_blank" rel="noopener">MongoDB Atlas</a> or local MongoDB running</li>
+        <li>Basic knowledge of JavaScript</li>
+      </ul>
+
+      <h2 class="reveal d4">2. Create Your Project Folder</h2>
+      <pre class="reveal d4"><span class="copy-badge">Click to copy</span><code>mkdir rest-api-demo
+cd rest-api-demo
+npm init -y</code></pre>
+
+      <h2 class="reveal d5">3. Install Dependencies</h2>
+      <pre class="reveal d5"><span class="copy-badge">Click to copy</span><code>npm install express mongoose dotenv</code></pre>
+
+      <h2 class="reveal d5">4. Set Up Express Server</h2>
+      <pre class="reveal d5"><span class="copy-badge">Click to copy</span><code>// index.js
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+
+app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error(err));
+
+app.get('/', (req, res) => {
+  res.send('API is running!');
+});
+
+app.listen(3000, () => console.log('Server started on port 3000'));</code></pre>
+
+      <h2 class="reveal d6">5. Create a Simple Model</h2>
+      <pre class="reveal d6"><span class="copy-badge">Click to copy</span><code>// models/Note.js
+const mongoose = require('mongoose');
+
+const noteSchema = new mongoose.Schema({
+  title: String,
+  content: String
+});
+
+module.exports = mongoose.model('Note', noteSchema);</code></pre>
+
+      <h2 class="reveal d6">6. Implement CRUD Endpoints</h2>
+      <pre class="reveal d6"><span class="copy-badge">Click to copy</span><code>// index.js (add below existing code)
+const Note = require('./models/Note');
+
+// Create
+app.post('/notes', async (req, res) => {
+  const note = new Note(req.body);
+  await note.save();
+  res.status(201).json(note);
+});
+
+// Read all
+app.get('/notes', async (req, res) => {
+  const notes = await Note.find();
+  res.json(notes);
+});
+
+// Read one
+app.get('/notes/:id', async (req, res) => {
+  const note = await Note.findById(req.params.id);
+  if (!note) return res.status(404).send('Note not found');
+  res.json(note);
+});
+
+// Update
+app.put('/notes/:id', async (req, res) => {
+  const note = await Note.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  if (!note) return res.status(404).send('Note not found');
+  res.json(note);
+});
+
+// Delete
+app.delete('/notes/:id', async (req, res) => {
+  const note = await Note.findByIdAndDelete(req.params.id);
+  if (!note) return res.status(404).send('Note not found');
+  res.json({ message: 'Note deleted' });
+});</code></pre>
+
+      <h2 class="reveal d7">7. Environment Variables</h2>
+      <pre class="reveal d7"><span class="copy-badge">Click to copy</span><code># .env
+MONGO_URI=your_mongodb_connection_string</code></pre>
+
+      <h2 class="reveal d7">8. Run Your API</h2>
+      <pre class="reveal d7"><span class="copy-badge">Click to copy</span><code>node index.js</code></pre>
+      <p class="reveal d7">Your API should now be running at <code>http://localhost:3000</code>. Test your endpoints using Postman or curl.</p>
+
+      <h2 class="reveal d8">Extra Tips</h2>
+      <ul class="reveal d8">
+        <li>Use <code>nodemon</code> for automatic server restarts during development.</li>
+        <li>Validate request data for better security.</li>
+        <li>Check out the official docs: <a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a>, <a href="https://mongoosejs.com/" target="_blank" rel="noopener">Mongoose</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <script>
+    // Start page fade-in
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('page-loaded');
+    });
+
+    // Click-to-copy for code blocks
+    document.querySelectorAll('pre').forEach(pre => {
+      pre.style.cursor = 'pointer';
+      pre.title = 'Click to copy';
+      pre.addEventListener('click', () => {
+        const text = pre.innerText.replace(/^\s*Click to copy\s*/i, '');
+        navigator.clipboard.writeText(text).then(() => {
+          const old = pre.querySelector('.copy-badge');
+          if(old){ old.textContent = 'Copied!'; setTimeout(()=> old.textContent='Click to copy', 1200); }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

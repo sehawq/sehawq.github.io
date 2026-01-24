@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ömer Arslan - My Portfolio</title>   
+        <link rel="icon" type="image/x-icon" href="/images/shayla.ico">
+    <link rel="image" type="image/x-icon" href="/images/shayla.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+               My Portfolio
+
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Communication</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1 data-i18n="hero_title">Hello I'm Ömer!</h1>
+                <p data-i18n="hero_subtitle">Computer Science & Information Systems</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero_btn1">View My Projects</a>
+                    <a href="#contact" class="btn btn-outline" data-i18n="hero_btn2">Communication</a>
+                </div>
+            </div>
+            <div id="particles-js"></div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="about_title">About Me</h2>
+                    
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3 data-i18n="about_subtitle">Who Am I?</h3>
+                        <p data-i18n="about_desc"> 
+                            Hello, my name is Ömer. I was born in Turkey and have been passionate about software development since the age of 11. My journey in programming began with creating Discord bots using Discord.js, which led me to explore and deepen my knowledge in JavaScript. This experience has allowed me to develop technical skills and broaden my expertise across various areas of software development.
+
+I am highly motivated by learning new technologies and generating innovative solutions. I am comfortable working both independently and collaboratively, taking responsibility and maintaining a results-oriented approach. I am confident in my ability to overcome challenges and successfully complete projects.
+                            
+
+                            
+
+
+
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="images/shayla.jpg" alt="Ömer Arslan" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="skills_title">Skills</h2>
+                </div>
+                <div class="skills-container">
+                    <div class="skill">
+                        <i class="fab fa-html5"></i>
+                        <h3>HTML5</h3>
+                        <p>Advanced HTML5 and semantic markup</p>
+                    </div>
+                    <div class="skill">
+                        <i class="fab fa-css3-alt"></i>
+                        <h3>CSS3</h3>
+                        <p>Modern CSS and preprocessors</p>
+                    </div>
+                    <div class="skill">
+                        <i class="fab fa-js-square"></i>
+                        <h3>JavaScript</h3>
+                        <p>ES6+ and modern JavaScript</p>
+                    </div>
+                    <div class="skill">
+                        <i class="fab fa-react"></i>
+                        <h3>React</h3>
+                        <p>React ve React Native</p>
+                    </div>
+                    <div class="skill">
+                        <i class="fab fa-node-js"></i>
+                        <h3>Node.js</h3>
+                        <p>Backend development</p>
+                    </div>
+                    <div class="skill">
+                        <i class="fas fa-database"></i>
+                        <h3>Database</h3>
+                        <p>MongoDB, MySQL, PostgreSQL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="projects_title">Projects</h2>
+                </div>
+                <div class="projects-container">
+                    <div class="project">
+                        
+                        <!-- Bu bir HTML yorumu, tarayıcı bunu görmez -->
+                      <!--  <img src="https://w7.pngwing.com/pngs/828/432/png-transparent-npm-node-js-computer-icons-computer-software-installation-others-text-rectangle-logo.png" alt="Project 1" class="project-img">  -->
+                        
+                        <div class="project-content">
+                            <h3>Sehawq.DB </h3>
+                            <p>Lightweight JSON-based key-value database for Node.js with async/sync APIs, dot-notation namespaces, array & math helpers, event emitters, and backup/restore. Perfect for bots, CLI tools, prototypes, and small apps needing simple, reliable data storage.</p>
+                            
+                            <div class="project-tech">
+                            <!--    <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span> -->
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/sehawq/sehawq.db"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="https://www.npmjs.com/package/sehawq.db"><i class="fab fa-npm"></i> NPM</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project">
+                       <!--  <img src="images/project2.jpg" alt="Project 2" class="project-img">  -->
+                        <div class="project-content">
+                            <h3>Discord.js v14 TypeScript Slash Command Bot Template</h3>
+                            <p>This repository provides a robust and clean starter template for developing Discord bots using Discord.js v14 and TypeScript, specifically designed for implementing slash commands. It offers a structured foundation, allowing developers to quickly build and deploy their bots with modern Discord API features.</p>
+                         <!--   <div class="project-tech"> 
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div> -->
+                            <div class="project-links">
+                                <a href="https://github.com/sehawq/Discord.js-v14-typescript-template"><i class="fab fa-github"></i> GitHub</a>
+                             <!--    <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project">
+                       <!--  <img src="images/project3.jpg" alt="Proje 3" class="project-img">  -->
+                        <div class="project-content">
+                            <h3>Coming soon..</h3>
+                            <p>---</p>
+                        <!--    <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">API</span>
+                                <span class="tech-tag">CSS</span> -->
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/sehawq"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="blog_title">Blog</h2>
+                </div>
+                <div class="blog-container">
+                    <div class="blog-post">
+                        <h3>Build Your First Discord Bot with Discord.js</h3>
+                        <p>A concise, step‑by‑step guide to setting up, coding, and running a professional Discord bot using Discord.js.</p>
+                        <a href="content/posts/how-to-use-discord.js.html" class="read-more">Read More</a>
+                    </div>
+                    <div class="blog-post">
+                        <h3>Build a Simple REST API with Node.js & MongoDB</h3>
+                        <p>A quick guide to creating and testing a basic REST API using Node.js, Express, and MongoDB. Perfect for beginners looking to learn backend fundamentals.</p>
+                        <a href="content/posts/rest-api-w-node-mongodb.html" class="read-more">Read More</a> 
+                    </div>
+
+                      <div class="blog-post">
+                        <h3>How to Use a Database in Node.js</h3>
+                        <p>A beginner-friendly guide to connecting Node.js with MongoDB and performing basic database operations like create, read, update, and delete. Perfect for those starting out with backend development.</p>
+                        <a href="content/posts/how-to-use-database-nodejs.html" class="read-more">Read More</a> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="contact_title">Communication</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>sehawq@icloud.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>-</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Adana, Türkiye</span>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+<div class="social-links">
+  <a href="https://github.com/sehawq" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+  <a href="https://steamcommunity.com/id/sehawq" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i></a>
+  <a href="https://www.youtube.com/@sehawashere" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a> 
+  <a href="https://www.instagram.com/sehawq/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+  <a href="http://sptfy.in/sehawq" target="_blank" rel="noopener noreferrer"><i class="fab fa-spotify"></i></a>
+
+
+</div>
+
+                <p>&copy; 2025 Ömer Arslan. All rights reserved..</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/pwa.js"></script>
+</body>
+</html>
+
+
